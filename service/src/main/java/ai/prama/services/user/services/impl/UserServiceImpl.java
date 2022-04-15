@@ -1,7 +1,7 @@
-package com.mycompany.user.services.impl;
+package ai.prama.services.user.services.impl;
 
-import com.mycompany.model.user.User;
-import com.mycompany.user.services.api.UserService;
+import ai.prama.model.user.User;
+import ai.prama.services.user.services.api.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

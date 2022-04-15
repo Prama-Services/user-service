@@ -1,4 +1,4 @@
-package com.mycompany.user.exceptions;
+package ai.prama.services.user.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

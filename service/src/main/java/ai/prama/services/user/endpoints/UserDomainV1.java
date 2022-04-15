@@ -1,4 +1,4 @@
-package com.mycompany.user.endpoints;
+package ai.prama.services.user.endpoints;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 

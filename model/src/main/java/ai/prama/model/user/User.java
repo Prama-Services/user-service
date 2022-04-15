@@ -1,4 +1,4 @@
-package com.mycompany.model.user;
+package ai.prama.model.user;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
-package com.mycompany.user.endpoints;
+package ai.prama.services.user.endpoints;
 
-import com.mycompany.model.user.User;
-import com.mycompany.user.exceptions.BadSearchRequestException;
-import com.mycompany.user.services.api.UserService;
+import ai.prama.model.user.User;
+import ai.prama.services.user.exceptions.BadSearchRequestException;
+import ai.prama.services.user.services.api.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class UserRestControllerV1 extends UserDomainV1 {
         userService.addNew(user);
     }
 
-    @GetMapping("/search")
+    @GetMapping(value = "/search", produces = APPLICATION_JSON_VALUE)
     public User searchUserByUsername(@RequestParam(required = false) String username,
                                      @RequestParam(required = false) String email) {
         if (StringUtils.hasText(username)) {
@@ -43,7 +43,7 @@ public class UserRestControllerV1 extends UserDomainV1 {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping(value = "/{userId}", produces = APPLICATION_JSON_VALUE)
     public User getUser(@PathVariable Long userId) {
         return userService.getUser(userId);
     }

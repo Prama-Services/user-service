@@ -1,6 +1,6 @@
-package com.mycompany.user.services.api;
+package ai.prama.services.user.services.api;
 
-import com.mycompany.model.user.User;
+import ai.prama.model.user.User;
 
 public interface UserService {
 

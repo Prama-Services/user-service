@@ -1,3 +1,7 @@
+# Allows us to see all the available actuators.
 management.endpoints.web.exposure.include: "*"
 
+# Required to fix an issue with springfox-swagger
 spring.mvc.pathmatch.matching-strategy: ant_path_matcher
+
+application.print.beans.enabled: false

@@ -1,4 +1,4 @@
-package com.mycompany.user.config;
+package ai.prama.services.user.config;
 
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;

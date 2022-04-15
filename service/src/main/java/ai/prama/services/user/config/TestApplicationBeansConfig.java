@@ -1,20 +1,18 @@
-package com.mycompany.user;
+package ai.prama.services.user.config;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
-@SpringBootApplication
-public class Application {
+@ConditionalOnProperty(value = "application.print.beans.enabled", havingValue = "true")
+@Configuration
+public class TestApplicationBeansConfig {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-
-//    @Bean
+    @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
@@ -28,4 +26,5 @@ public class Application {
 
         };
     }
+
 }
