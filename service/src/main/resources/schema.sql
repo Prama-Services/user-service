@@ -1,0 +1,7 @@
+
+DROP TABLE IF EXISTS USERS;
+CREATE TABLE USERS (
+    FIRST_NAME varchar(50),
+    LAST_NAME varchar(50),
+    EMAIL varchar(255)
+);

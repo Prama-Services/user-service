@@ -1,43 +1,47 @@
 package ai.prama.services.user.services.impl;
 
 import ai.prama.model.user.User;
+import ai.prama.services.user.dao.api.UserDao;
 import ai.prama.services.user.services.api.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserDao userDao;
+
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Override
     public void addNew(User user) {
-        // TODO Implement
+        userDao.createUser(user);
     }
 
     @Override
     public User getUser(Long id) {
-        // TODO Implement
-        return null;
+        return userDao.getUser(id);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        // TODO Implement
-        return null;
+        return userDao.getUserByUsername(username);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        // TODO Implement
-        return null;
+        return userDao.getUserByEmail(email);
     }
 
     @Override
     public void updateUser(User user) {
-        // TODO Implement
+        userDao.updateUser(user);
     }
 
     @Override
     public void deleteUser(String username) {
-        // TODO Implement
+        userDao.deleteUser(username);
     }
 
 }
