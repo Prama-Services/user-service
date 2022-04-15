@@ -23,6 +23,7 @@ public class JdbcTemplateUserDaoConstants {
 
 
     static final RowMapper<User> userRowMapper = (rs, rowNum) -> User.builder()
+        .id(rs.getLong("id"))
         .firstName(rs.getString("first_name"))
         .lastName(rs.getString("last_name"))
         .email(rs.getString("email"))

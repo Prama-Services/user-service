@@ -1,3 +1,5 @@
+
+
 # Allows us to see all the available actuators.
 management.endpoints.web.exposure.include: "*"
 
@@ -21,3 +23,5 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+  main:
+    banner-mode: off

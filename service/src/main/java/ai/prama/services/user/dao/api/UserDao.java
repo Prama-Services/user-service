@@ -6,7 +6,7 @@ public interface UserDao {
 
     void createUser(User user);
 
-    User getUser(Long id);
+    User getUser(Long userId);
 
     User getUserByUsername(String username);
 
@@ -14,5 +14,5 @@ public interface UserDao {
 
     void updateUser(User user);
 
-    void deleteUser(String username);
+    void deleteUser(Long userId);
 }

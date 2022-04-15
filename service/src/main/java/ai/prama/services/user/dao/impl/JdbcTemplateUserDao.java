@@ -2,8 +2,12 @@ package ai.prama.services.user.dao.impl;
 
 import ai.prama.model.user.User;
 import ai.prama.services.user.dao.api.UserDao;
+import ai.prama.services.user.exceptions.ClientCausedUserDatabaseException;
 import ai.prama.services.user.exceptions.UserDatabaseException;
+import ai.prama.services.user.exceptions.UserNotFoundException;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -26,28 +30,45 @@ public class JdbcTemplateUserDao implements UserDao {
 
     @Override
     public void createUser(User user) {
-        jdbcTemplate.update(
-            SQL_CREATE_USER,
-            user.getFirstName(),
-            user.getLastName(),
-            user.getEmail(),
-            user.getUsername(),
-            user.getPassword());
+        try {
+            jdbcTemplate.update(
+                SQL_CREATE_USER,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getPassword());
+        } catch (DataIntegrityViolationException e) {
+            throw new ClientCausedUserDatabaseException("Failed to persist user.", e);
+        }
     }
 
     @Override
-    public User getUser(Long id) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_ID, userRowMapper, id);
+    public User getUser(Long userId) {
+        try {
+            return jdbcTemplate.queryForObject(SQL_GET_BY_ID, userRowMapper, userId);
+        } catch (EmptyResultDataAccessException e) {
+            throw new UserNotFoundException("Could not find user with userId=" + userId, e);
+        }
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_USERNAME, userRowMapper, username);
+        try {
+            return jdbcTemplate.queryForObject(SQL_GET_BY_USERNAME, userRowMapper, username);
+        } catch (EmptyResultDataAccessException e) {
+            throw new UserNotFoundException("Could not find user with username=" + username, e);
+        }
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, userRowMapper, email);
+        try {
+            return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, userRowMapper, email);
+        } catch (EmptyResultDataAccessException e) {
+            throw new UserNotFoundException("Could not find user with email=" + email, e);
+        }
+
     }
 
     @Override
@@ -66,10 +87,10 @@ public class JdbcTemplateUserDao implements UserDao {
     }
 
     @Override
-    public void deleteUser(String username) {
-        final int updated = jdbcTemplate.update(SQL_DELETE, username);
+    public void deleteUser(Long userId) {
+        final int updated = jdbcTemplate.update(SQL_DELETE, userId);
         if (updated < 1) {
-            throw new UserDatabaseException("Failed to delete the user with username=" + username);
+            throw new UserDatabaseException("Failed to delete the user with userId=" + userId);
         }
     }
 
