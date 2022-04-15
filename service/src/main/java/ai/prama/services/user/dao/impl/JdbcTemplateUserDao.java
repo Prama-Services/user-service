@@ -37,17 +37,17 @@ public class JdbcTemplateUserDao implements UserDao {
 
     @Override
     public User getUser(Long id) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_ID, userRowMapper);
+        return jdbcTemplate.queryForObject(SQL_GET_BY_ID, userRowMapper, id);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_USERNAME, userRowMapper);
+        return jdbcTemplate.queryForObject(SQL_GET_BY_USERNAME, userRowMapper, username);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, userRowMapper);
+        return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, userRowMapper, email);
     }
 
     @Override
