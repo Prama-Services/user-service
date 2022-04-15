@@ -8,7 +8,7 @@ application.print.beans.enabled: false
 
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:userdb
     driverClassName: org.h2.Driver
     username: sa
     password: password

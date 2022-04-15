@@ -1,7 +1,9 @@
 
-DROP TABLE IF EXISTS USERS;
-CREATE TABLE USERS (
-    FIRST_NAME varchar(50),
-    LAST_NAME varchar(50),
-    EMAIL varchar(255)
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    first_name varchar(50),
+    last_name varchar(50),
+    email varchar(255)
+    username varchar(30)
+    password varchar(30)
 );

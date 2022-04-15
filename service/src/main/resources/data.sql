@@ -1,2 +1,2 @@
-INSERT INTO USERS (FIRST_NAME, LAST_NAME, EMAIL)
-VALUES('Ted', 'Tin', 'tedtin@doggyworld.com');
+INSERT INTO users (first_name, last_name, email, username, password)
+VALUES('Ted', 'Tin', 'tedtin@doggyworld.com', 'tedtin', 'secret');

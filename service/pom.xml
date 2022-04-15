@@ -14,7 +14,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>ai.prama.services</groupId>
+            <groupId>ai.prama.models</groupId>
             <artifactId>user.model</artifactId>
         </dependency>
 

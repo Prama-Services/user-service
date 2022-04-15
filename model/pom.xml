@@ -9,6 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <groupId>ai.prama.models</groupId>
     <artifactId>user.model</artifactId>
 
 </project>

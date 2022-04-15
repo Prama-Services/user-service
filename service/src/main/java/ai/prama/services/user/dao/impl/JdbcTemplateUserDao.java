@@ -3,6 +3,7 @@ package ai.prama.services.user.dao.impl;
 import ai.prama.model.user.User;
 import ai.prama.services.user.dao.api.UserDao;
 import ai.prama.services.user.exceptions.UserDatabaseException;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,13 @@ public class JdbcTemplateUserDao implements UserDao {
 
     @Override
     public void createUser(User user) {
-        jdbcTemplate.update(SQL_CREATE_USER);
+        jdbcTemplate.update(
+            SQL_CREATE_USER,
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmail(),
+            user.getUsername(),
+            user.getPassword());
     }
 
     @Override
@@ -45,7 +52,14 @@ public class JdbcTemplateUserDao implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        final int updated = jdbcTemplate.update(SQL_UPDATE);
+        final int updated = jdbcTemplate.update(
+            SQL_UPDATE,
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmail(),
+            user.getUsername(),
+            user.getPassword(),
+            user.getId());
         if (updated < 1) {
             throw new UserDatabaseException("Failed to update the user id=" + user.getId());
         }
@@ -53,7 +67,7 @@ public class JdbcTemplateUserDao implements UserDao {
 
     @Override
     public void deleteUser(String username) {
-        final int updated = jdbcTemplate.update(SQL_DELETE);
+        final int updated = jdbcTemplate.update(SQL_DELETE, username);
         if (updated < 1) {
             throw new UserDatabaseException("Failed to delete the user with username=" + username);
         }
